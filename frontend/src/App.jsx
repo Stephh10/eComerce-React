@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import Main from "./pages/Main/Main";
 import Category from "./pages/Category/Category";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/women" element={<Category />} />
         <Route path="/kids" element={<Category />} />
       </Routes>
+      <Footer />
     </>
   );
 }

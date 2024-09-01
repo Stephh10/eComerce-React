@@ -1,0 +1,10 @@
+.collection h1 {
+  text-align: center;
+}
+
+.collectionGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0 30px;
+  gap: 0.5rem;
+}

@@ -1,0 +1,14 @@
+.popular {
+  padding: 0 30px;
+  margin-bottom: 70px;
+}
+
+.popular h1 {
+  text-align: center;
+}
+
+.popularGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}

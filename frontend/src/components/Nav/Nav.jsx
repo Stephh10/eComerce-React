@@ -45,10 +45,12 @@ export default function Nav() {
         </NavLink>
 
         {/* <Link>Logout</Link> */}
-        <button>
-          <ShoppingCart size={28} />
-          <p>1</p>
-        </button>
+        <Link to={"/cart"}>
+          <button>
+            <ShoppingCart size={28} />
+            <p>1</p>
+          </button>
+        </Link>
       </div>
     </div>
   );

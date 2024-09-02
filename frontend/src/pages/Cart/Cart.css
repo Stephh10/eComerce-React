@@ -1,0 +1,93 @@
+.card {
+  min-height: 100vh;
+}
+
+.cartActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cartActions a {
+  border: 1px solid grey;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 7px;
+}
+
+.cartActions a:first-child {
+  background-color: inherit;
+  color: black;
+  border: 2px solid black;
+}
+
+.cartActions a:last-child {
+  background-color: black;
+  border: 2px solid black;
+  color: white;
+}
+
+.cartActions h1 {
+  margin: 20px 0;
+  font-size: 35px;
+  font-weight: 400;
+}
+
+.cardWrapper {
+  display: flex;
+  min-height: 250px;
+}
+
+.cartItems {
+  flex: 2;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+
+.cartDetails {
+  flex: 1;
+  border: 1px solid grey;
+  border-radius: 10px 10px 10px 0px;
+  padding: 10px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 200px;
+}
+
+.cartDetails h3 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.cartDetails button {
+  width: 200px;
+  padding: 8px 0;
+  border: none;
+  background-color: black;
+  color: white;
+  margin: 10px auto 0 auto;
+  cursor: pointer;
+}
+
+.cartDetailsEl {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+  .cardWrapper {
+    flex-direction: column;
+  }
+
+  .cartDetails {
+    margin: 20px 0 60px 0;
+    max-height: 400px;
+  }
+
+  .cartActions h1 {
+    margin: 20px 0;
+    font-size: 20px;
+    font-weight: 400;
+  }
+}

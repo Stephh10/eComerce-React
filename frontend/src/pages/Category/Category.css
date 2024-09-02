@@ -1,0 +1,32 @@
+.category {
+  margin: 20px 0;
+}
+
+.categoryShow {
+  margin: 20px 10px;
+}
+
+.categoryShow span {
+  font-weight: bold;
+}
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 0px 10px;
+}
+
+.categoryAction {
+  text-align: center;
+}
+
+.categoryAction button {
+  margin: 20px 0 10px 0;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  font-weight: bold;
+  cursor: pointer;
+}

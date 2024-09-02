@@ -1,0 +1,46 @@
+import React, { useState } from "react";
+import "./LoginRegister.css";
+import { Link } from "react-router-dom";
+
+export default function LoginRegister() {
+  const [formType, setFormType] = useState("Login");
+  const loginForm = formType === "Login";
+
+  return (
+    <div className="formWrapper">
+      <h1>{formType}</h1>
+      <form>
+        {!loginForm && (
+          <div className="control">
+            <p>Username</p>
+            <input type="text" name="username" />
+          </div>
+        )}
+
+        <div className="control">
+          <p>Email</p>
+          <input type="email" name="email" />
+        </div>
+        <div className="control">
+          <p>Password</p>
+          <input type="password" name="password" />
+        </div>
+        <button>Login</button>
+
+        {loginForm && (
+          <p className="formChange">
+            Don't have an account yet?
+            <Link onClick={() => setFormType("Register")}>Register here</Link>
+          </p>
+        )}
+
+        {!loginForm && (
+          <p className="formChange">
+            Have an account ?
+            <Link onClick={() => setFormType("Login")}>Login here</Link>
+          </p>
+        )}
+      </form>
+    </div>
+  );
+}

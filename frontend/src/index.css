@@ -9,6 +9,10 @@ body {
   background-color: #fcfcfc;
   padding: 0 10px;
   min-height: 100vh;
+  overflow-y: scroll;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .line {

@@ -1,15 +1,32 @@
 import React, { useState } from "react";
 import "./LoginRegister.css";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUser } from "../../store/UserSlice";
 
 export default function LoginRegister() {
   const [formType, setFormType] = useState("Login");
   const loginForm = formType === "Login";
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.user);
+  console.log(currentUser);
+
+  function handleLogin(e) {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const formData = Object.fromEntries(fd);
+    dispatch(fetchUser(formData));
+  }
+
+  function handleRegister(e) {
+    e.preventDefault();
+    console.log("Register");
+  }
 
   return (
     <div className="formWrapper">
       <h1>{formType}</h1>
-      <form>
+      <form onSubmit={loginForm ? handleLogin : handleRegister}>
         {!loginForm && (
           <div className="control">
             <p>Username</p>
@@ -25,7 +42,7 @@ export default function LoginRegister() {
           <p>Password</p>
           <input type="password" name="password" />
         </div>
-        <button>Login</button>
+        <button>{currentUser.isLoading ? "Loading" : "Confirm"}</button>
 
         {loginForm && (
           <p className="formChange">

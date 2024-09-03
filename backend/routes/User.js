@@ -21,7 +21,7 @@ router.post("/register", async (req, res) => {
     );
 
     await user.save();
-    res.json({ success: "Account created", token: token });
+    res.json({ userData: user, token, serverMessage: "Account created" });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -33,8 +33,6 @@ router.post("/login", async (req, res) => {
 
   const correctPassword = await bcrypt.compare(password, user.password);
 
-  const userData = { id: user.id, admin: user.isAdmin };
-
   if (correctPassword) {
     const token = jwt.sign(
       { id: user.id, admin: user.isAdmin },
@@ -42,7 +40,7 @@ router.post("/login", async (req, res) => {
       { expiresIn: "3d" }
     );
 
-    res.json({ message: "Successfully loged in", token });
+    res.json({ userData: user, token, serverMessage: "Successfully loged in" });
   } else {
     res.status(401).json("Wrong username or password");
   }

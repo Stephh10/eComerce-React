@@ -5,6 +5,7 @@ import Category from "./pages/Category/Category";
 import Footer from "./components/Footer/Footer";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import Cart from "./pages/Cart/Cart";
+import Notification from "./helpers/Notification";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/auth" element={<LoginRegister />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
+      <Notification />
       <Footer />
     </>
   );

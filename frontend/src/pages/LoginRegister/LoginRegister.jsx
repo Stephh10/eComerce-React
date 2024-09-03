@@ -3,24 +3,48 @@ import "./LoginRegister.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser } from "../../store/UserSlice";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function LoginRegister() {
   const [formType, setFormType] = useState("Login");
   const loginForm = formType === "Login";
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.user);
-  console.log(currentUser);
+  const currentUserData = useSelector((state) => state.user);
+
+  console.log(currentUserData);
 
   function handleLogin(e) {
     e.preventDefault();
     const fd = new FormData(e.target);
     const formData = Object.fromEntries(fd);
-    dispatch(fetchUser(formData));
+    dispatch(fetchUser({ userData: formData, route: "login" })).then(
+      (result) => {
+        if (fetchUser.fulfilled.match(result)) {
+          navigate("/");
+          toast.success("Successfuly logged in");
+        } else {
+          toast.error("Wrong username or password");
+        }
+      }
+    );
   }
 
   function handleRegister(e) {
     e.preventDefault();
-    console.log("Register");
+    const fd = new FormData(e.target);
+    const formData = Object.fromEntries(fd);
+    dispatch(fetchUser({ userData: formData, route: "register" })).then(
+      (result) => {
+        if (fetchUser.fulfilled.match(result)) {
+          navigate("/");
+          toast.success("Account created");
+        } else {
+          toast.error("User already exist");
+        }
+      }
+    );
   }
 
   return (
@@ -42,7 +66,7 @@ export default function LoginRegister() {
           <p>Password</p>
           <input type="password" name="password" />
         </div>
-        <button>{currentUser.isLoading ? "Loading" : "Confirm"}</button>
+        <button>{currentUserData.isLoading ? "Loading" : "Confirm"}</button>
 
         {loginForm && (
           <p className="formChange">

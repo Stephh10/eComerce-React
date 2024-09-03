@@ -2,17 +2,20 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchUser = createAsyncThunk(
   "user/fetchUser",
-  async (userData, { rejectWithValue }) => {
+  async (dataObj, { rejectWithValue }) => {
     const options = {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userData),
+      body: JSON.stringify(dataObj.userData),
     };
     try {
-      const response = await fetch("http://localhost:3000/login", options);
+      const response = await fetch(
+        `http://localhost:3000/${dataObj.route}`,
+        options
+      );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -48,27 +51,3 @@ const UserSlice = createSlice({
 });
 
 export default UserSlice.reducer;
-
-// setUser: (state, action) => {
-//     state.user.isLoading = false;
-//     state.user = action.payload;
-//   },
-//   settingUser: (state) => {
-//     state.user.isLoading = true;
-//   },
-//   errorLoading: (state) => {
-//     state.user.isLoading = false;
-//   },
-
-// reducers: {
-//     setUser: (state, action) => {
-//       state.user.isLoading = false;
-//       state.user = action.payload;
-//     },
-//     settingUser: (state) => {
-//       state.user.isLoading = true;
-//     },
-//     errorLoading: (state) => {
-//       state.user.isLoading = false;
-//     },
-// }

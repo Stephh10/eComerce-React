@@ -5,6 +5,7 @@ import Category from "./pages/Category/Category";
 import Footer from "./components/Footer/Footer";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import Cart from "./pages/Cart/Cart";
+import Details from "./pages/Details/Details";
 import Notification from "./helpers/Notification";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/item/:itemId" element={<Details />} />
         <Route path="/mens" element={<Category category="men" />} />
         <Route path="/women" element={<Category category="women" />} />
         <Route path="/kids" element={<Category category="kid" />} />

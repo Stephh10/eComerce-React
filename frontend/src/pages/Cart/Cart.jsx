@@ -2,19 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Cart.css";
 import CartItem from "../../components/CartItem/CartItem";
-import { data_product } from "../../assets/data";
+import { useSelector } from "react-redux";
 
 export default function Cart() {
+  const cartDetails = useSelector((state) => state.cart);
   return (
     <div className="card">
       <div className="cartActions">
-        <Link>CONTINUE SHOPPING</Link>
+        <Link to={"/"}>CONTINUE SHOPPING</Link>
         <h1>Your Bag</h1>
         <Link>CHECKOUT NOW</Link>
       </div>
       <div className="cardWrapper">
         <div className="cartItems">
-          {data_product.map((item) => (
+          {cartDetails.cart.map((item) => (
             <CartItem key={item.id} item={item} />
           ))}
         </div>

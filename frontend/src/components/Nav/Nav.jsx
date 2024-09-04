@@ -2,8 +2,11 @@ import React from "react";
 import "./Nav.css";
 import { NavLink, Link } from "react-router-dom";
 import { Bag, ShoppingCart } from "phosphor-react";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Nav() {
+  const cartData = useSelector((state) => state.cart);
+  console.log(cartData.cart);
   return (
     <div className="nav">
       <div className="navLogo">
@@ -48,7 +51,7 @@ export default function Nav() {
         <Link to={"/cart"}>
           <button>
             <ShoppingCart size={28} />
-            <p>1</p>
+            <p>{cartData.cart.length}</p>
           </button>
         </Link>
       </div>

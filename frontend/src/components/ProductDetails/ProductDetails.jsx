@@ -1,7 +1,14 @@
 import React from "react";
 import "./ProductDetails.css";
+import { useDispatch } from "react-redux";
+import { addCartItem } from "../../store/CartSlice";
 
 export default function ProductDetails({ item }) {
+  const dispatch = useDispatch();
+
+  function addToCart() {
+    dispatch(addCartItem(item));
+  }
   return (
     <div className="productDetails">
       <div className="productDetailsLeft">
@@ -19,7 +26,7 @@ export default function ProductDetails({ item }) {
           amet iste iure consequatur minima nulla, incidunt eum molestiae
           dolores explicabo.
         </p>
-        <button>Add To Cart</button>
+        <button onClick={addToCart}>Add To Cart</button>
       </div>
     </div>
   );

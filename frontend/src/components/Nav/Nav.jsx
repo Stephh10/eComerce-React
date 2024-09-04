@@ -1,11 +1,11 @@
 import React from "react";
 import "./Nav.css";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { Bag, ShoppingCart } from "phosphor-react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { removeUser } from "../../store/UserSlice";
 import { persistor } from "../../store/store";
+import { toast } from "react-toastify";
 
 export default function Nav() {
   const cartData = useSelector((state) => state.cart);
@@ -13,13 +13,12 @@ export default function Nav() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  function handleLogout() {
-    persistor.purge();
+  async function handleLogout() {
+    await persistor.purge();
     dispatch(removeUser());
-    navigate("/login");
+    toast.success("Logged out");
+    navigate("/auth");
   }
-
-  console.log(currentUser);
 
   return (
     <div className="nav">

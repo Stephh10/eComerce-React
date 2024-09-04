@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./LoginRegister.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -46,6 +46,12 @@ export default function LoginRegister() {
       }
     );
   }
+
+  useEffect(() => {
+    if (currentUserData.currentUser) {
+      return navigate("/");
+    }
+  }, [currentUserData.currentUser]);
 
   return (
     <div className="formWrapper">

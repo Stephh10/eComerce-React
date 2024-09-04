@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Notification() {
   return (
     <div>
-      <ToastContainer position="bottom-right" autoClose={3000} />
+      <ToastContainer position="bottom-right" autoClose={3000} theme="dark" />
     </div>
   );
 }

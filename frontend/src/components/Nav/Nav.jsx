@@ -5,6 +5,7 @@ import { Bag, ShoppingCart } from "phosphor-react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeUser } from "../../store/UserSlice";
+import { persistor } from "../../store/store";
 
 export default function Nav() {
   const cartData = useSelector((state) => state.cart);
@@ -13,6 +14,7 @@ export default function Nav() {
   const dispatch = useDispatch();
 
   function handleLogout() {
+    persistor.purge();
     dispatch(removeUser());
     navigate("/login");
   }

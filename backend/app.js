@@ -5,6 +5,7 @@ require("dotenv").config();
 const cors = require("cors");
 
 const userRoute = require("./routes/User");
+const productRoute = require("./routes/Product");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -16,6 +17,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use("/", userRoute);
+app.use("/", productRoute);
 
 app.get("/", (req, res) => {
   res.send("Working");

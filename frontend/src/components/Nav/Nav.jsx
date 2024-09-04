@@ -3,10 +3,22 @@ import "./Nav.css";
 import { NavLink, Link } from "react-router-dom";
 import { Bag, ShoppingCart } from "phosphor-react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { removeUser } from "../../store/UserSlice";
 
 export default function Nav() {
   const cartData = useSelector((state) => state.cart);
-  console.log(cartData.cart);
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  function handleLogout() {
+    dispatch(removeUser());
+    navigate("/login");
+  }
+
+  console.log(currentUser);
+
   return (
     <div className="nav">
       <div className="navLogo">
@@ -40,14 +52,17 @@ export default function Nav() {
         </NavLink>
       </ul>
       <div className="navActions">
-        <NavLink
-          to="/auth"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          Login
-        </NavLink>
+        {!currentUser && (
+          <NavLink
+            to="/auth"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Login
+          </NavLink>
+        )}
 
-        {/* <Link>Logout</Link> */}
+        {currentUser && <Link onClick={handleLogout}>Logout</Link>}
+
         <Link to={"/cart"}>
           <button>
             <ShoppingCart size={28} />

@@ -9,24 +9,32 @@
   display: flex;
   flex-direction: column;
   height: 500px;
-  margin-top: 20px;
+  margin-top: 30px;
+  background-color: black;
+  border-radius: 0 10px 10px 0;
+  overflow: hidden;
 }
 
 .sidebar button {
   background-color: inherit;
   border: none;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #c3c3c3;
   height: 45px;
   cursor: pointer;
+  color: white;
+}
+
+.sidebar button.active {
+  background-color: white;
+  color: black;
 }
 
 .sidebar button:hover {
-  background-color: grey;
-  color: white;
+  background-color: white;
+  color: black;
 }
 
 .mainContent {
   flex: 3;
-  border: 1px solid grey;
-  padding: 10px;
+  margin: 30px 16px 0 0;
 }

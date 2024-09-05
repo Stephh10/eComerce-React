@@ -46,4 +46,23 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.get("/getusers", async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.json(users);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.delete("/removeuser", async (req, res) => {
+  const { id } = req.body;
+  try {
+    const user = await User.findByIdAndDelete(id);
+    res.json(user);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;

@@ -6,8 +6,9 @@
 
 .removeBtn {
   background-color: inherit;
+
   border: none;
-  width: 30%;
+  width: 100%;
   font-size: 17px;
   font-weight: bold;
   color: white;

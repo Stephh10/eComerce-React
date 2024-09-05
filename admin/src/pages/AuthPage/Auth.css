@@ -43,6 +43,10 @@
   cursor: pointer;
 }
 
+.control h5 {
+  margin-top: 5px;
+}
 .control input {
   width: 100%;
+  margin: 2px 0;
 }

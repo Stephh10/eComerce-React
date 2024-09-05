@@ -13,7 +13,7 @@ const productSchema = new Schema({
 
   subcategory: {
     type: String,
-    default: "popular",
+    default: "new",
   },
   image: {
     type: String,
@@ -30,6 +30,10 @@ const productSchema = new Schema({
   avalible: {
     type: Boolean,
     default: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
   },
 });
 

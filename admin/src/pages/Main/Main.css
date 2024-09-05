@@ -1,0 +1,32 @@
+.main {
+  display: flex;
+  gap: 1rem;
+}
+
+.sidebar {
+  flex: 1;
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  margin-top: 20px;
+}
+
+.sidebar button {
+  background-color: inherit;
+  border: none;
+  border-bottom: 1px solid grey;
+  height: 45px;
+  cursor: pointer;
+}
+
+.sidebar button:hover {
+  background-color: grey;
+  color: white;
+}
+
+.mainContent {
+  flex: 3;
+  border: 1px solid grey;
+  padding: 10px;
+}

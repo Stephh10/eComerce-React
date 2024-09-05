@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.removeBtn {
+  background-color: inherit;
+  border: none;
+  width: 30%;
+  font-size: 17px;
+  font-weight: bold;
+  color: white;
+}
+
+.removeBtn:hover {
+  background-color: white;
+  color: black;
+}

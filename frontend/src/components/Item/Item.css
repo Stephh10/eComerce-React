@@ -1,5 +1,4 @@
 .item {
-  width: 100%;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -13,7 +12,7 @@
 .item img {
   width: 100%;
   height: auto;
-  display: block;
+  object-fit: cover;
 }
 
 .itemDetails {
@@ -33,4 +32,10 @@
 .priceDetails :last-child {
   text-decoration: line-through;
   color: grey;
+}
+
+@media only screen and (min-width: 1200px) {
+  .item {
+    max-width: 400px;
+  }
 }

@@ -15,9 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/item/:itemId" element={<Details />} />
-        <Route path="/mens" element={<Category category="men" />} />
+        <Route path="/mens" element={<Category category="mens" />} />
         <Route path="/women" element={<Category category="women" />} />
-        <Route path="/kids" element={<Category category="kid" />} />
+        <Route path="/kids" element={<Category category="kids" />} />
         <Route path="/auth" element={<LoginRegister />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>

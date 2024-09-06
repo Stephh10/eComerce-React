@@ -37,6 +37,7 @@ export default function NewProduct({ setPage }) {
     const resData = await response.json();
     console.log(resData);
     setShow(true);
+    // e.target.reset();
   }
 
   function handleSelectProducts() {
@@ -56,15 +57,11 @@ export default function NewProduct({ setPage }) {
         </Row>
         <Row className="mb-3">
           <Form.Group as={Col} md="4">
-            <Form.Label>Category</Form.Label>
-            <Form.Control required type="text" name="category" />
-          </Form.Group>
-          <Form.Group as={Col} md="4">
             <Form.Label>Subcategory</Form.Label>
             <Form.Control required type="text" name="subcategory" />
           </Form.Group>
         </Row>
-        <Row className="mb-3">
+        <Row className="mb-4">
           <Form.Group as={Col} md="4">
             <Form.Label>Old Price</Form.Label>
             <Form.Control required type="number" name="old_price" />
@@ -74,6 +71,18 @@ export default function NewProduct({ setPage }) {
             <Form.Control required type="number" name="new_price" />
           </Form.Group>
         </Row>
+
+        <Form.Select
+          style={{ height: "45px" }}
+          aria-label="Default select example"
+          className="w-25 mt-3"
+          name="category"
+        >
+          <option value="mens">Men</option>
+          <option value="women">Women</option>
+          <option value="kids">Kid</option>
+        </Form.Select>
+
         <Row className="mb-3">
           {/* <Form.Group as={Col} md="4">
             <Form.Label>Image</Form.Label>

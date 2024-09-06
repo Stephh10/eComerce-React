@@ -12,7 +12,7 @@ export default function ProductDetails({ item }) {
   return (
     <div className="productDetails">
       <div className="productDetailsLeft">
-        <img src={item.image} alt="itemDetailsImage" />
+        <img src={"ss"} alt="itemDetailsImage" />
       </div>
       <div className="productDetailsRight">
         <h2>{item.name}</h2>

@@ -15,10 +15,10 @@ const productSchema = new Schema({
     type: String,
     default: "new",
   },
-  image: {
-    type: String,
-    required: true,
-  },
+  //   image: {
+  //     type: String,
+  //     required: true,
+  //   },
   old_price: {
     type: Number,
     required: true,

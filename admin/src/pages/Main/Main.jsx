@@ -48,7 +48,7 @@ export default function Main() {
       </div>
       <div className="mainContent">
         {page == "products" && <Products />}
-        {page == "new" && <NewProduct />}
+        {page == "new" && <NewProduct setPage={setPage} />}
         {page == "users" && <Users />}
         {page == "orders" && <Orders />}
       </div>

@@ -40,7 +40,7 @@ export default function Users() {
       <h2>Users</h2>
       <Table striped bordered hover className="table-dark text-center">
         <thead>
-          <tr>
+          <tr className="align-middle">
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
@@ -52,7 +52,7 @@ export default function Users() {
           {data?.map((item, index) => {
             const admin = item?.isAdmin;
             return (
-              <tr key={item._id}>
+              <tr key={item._id} className="align-middle">
                 <td>{index + 1}</td>
                 <td>{item.username}</td>
                 <td>{item.email}</td>

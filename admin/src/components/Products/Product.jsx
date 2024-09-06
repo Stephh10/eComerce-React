@@ -1,13 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
+import { toast } from "react-toastify";
 
 export default function Product() {
+  const [products, setProduct] = useState([]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const response = await fetch("http://localhost:3000/getproducts");
+        const resData = await response.json();
+        setProduct(resData);
+      } catch (error) {
+        toast.error(error);
+      }
+    }
+
+    fetchProducts();
+  }, []);
+
+  async function removeProduct(id) {
+    await fetch(`http://localhost:3000/deleteproduct/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    setProduct((allProducts) => allProducts.filter((prod) => prod._id !== id));
+  }
+
+  console.log(products);
+
   return (
     <div>
       <h2>Products</h2>
-      <Table striped bordered hover className="table-dark text-center">
+      <Table striped bordered hover className="table-dark text-center  ">
         <thead>
-          <tr>
+          <tr className="align-middle">
             <th>ID</th>
             <th>Name</th>
             <th>Category</th>
@@ -18,17 +48,27 @@ export default function Product() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Bluse</td>
-            <td>Women</td>
-            <td>100$</td>
-            <td>90$</td>
-            <td>Yes$</td>
-            <td>
-              <button className="removeBtn">X</button>
-            </td>
-          </tr>
+          {products.map((product, index) => {
+            const avalible = product.avalible;
+            return (
+              <tr className="align-middle" key={product._id}>
+                <td>{index + 1}</td>
+                <td>{product.name}</td>
+                <td>{product.category}</td>
+                <td>{product.old_price}$</td>
+                <td>{product.new_price}$</td>
+                <td>{avalible ? "Yes" : "No"}</td>
+                <td>
+                  <button
+                    onClick={() => removeProduct(product._id)}
+                    className="removeBtn"
+                  >
+                    X
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
     </div>

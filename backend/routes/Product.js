@@ -3,9 +3,10 @@ const Product = require("../models/Product");
 
 const router = express.Router();
 
-router.post("/createproduct", (req, res) => {
+router.post("/createproduct", async (req, res) => {
   try {
     const product = new Product(req.body);
+    await product.save();
     res.json(product);
   } catch (error) {
     res.status(500).json(error);
@@ -41,6 +42,7 @@ router.put("/updateproduct/:id", async (req, res) => {
 });
 
 router.delete("/deleteproduct/:id", async (req, res) => {
+  console.log("good");
   try {
     const { id } = req.params;
     const product = await Product.findByIdAndDelete(id);

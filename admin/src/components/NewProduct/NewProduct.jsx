@@ -5,16 +5,43 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Modal from "react-bootstrap/Modal";
+import { toast } from "react-toastify";
 
-export default function NewProduct() {
+export default function NewProduct({ setPage }) {
   const [show, setShow] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const fd = new FormData(e.target);
     const formData = Object.fromEntries(fd.entries());
-    console.log(formData);
+
+    const productData = {
+      ...formData,
+      category: formData.category.toLowerCase(),
+      subcategory: formData.subcategory.toLowerCase(),
+    };
+
+    const response = await fetch("http://localhost:3000/createproduct", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productData),
+    });
+
+    if (!response.ok) {
+      toast.error("Something went wrong");
+    }
+
+    const resData = await response.json();
+    console.log(resData);
     setShow(true);
+  }
+
+  function handleSelectProducts() {
+    setShow(false);
+    setPage("products");
   }
 
   return (
@@ -63,6 +90,9 @@ export default function NewProduct() {
         <Modal.Footer>
           <Button onClick={() => setShow(false)} variant="primary">
             Confirm
+          </Button>
+          <Button onClick={handleSelectProducts} variant="success">
+            All Products
           </Button>
         </Modal.Footer>
       </Modal>

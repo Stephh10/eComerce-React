@@ -15,10 +15,6 @@ const productSchema = new Schema({
     type: String,
     default: "new",
   },
-  //   image: {
-  //     type: String,
-  //     required: true,
-  //   },
   old_price: {
     type: Number,
     required: true,
@@ -30,6 +26,10 @@ const productSchema = new Schema({
   avalible: {
     type: Boolean,
     default: true,
+  },
+  image: {
+    type: String,
+    required: true,
   },
   date: {
     type: Date,

@@ -9,6 +9,7 @@ import Details from "./pages/Details/Details";
 import Notification from "./helpers/Notification";
 
 function App() {
+  console.log(import.meta.env.VITE_FIREBASE_KEY);
   return (
     <>
       <Nav />

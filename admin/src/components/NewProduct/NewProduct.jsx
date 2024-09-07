@@ -6,38 +6,59 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
+import { app } from "../../firebase";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 export default function NewProduct({ setPage }) {
   const [show, setShow] = useState(false);
+  const storage = getStorage(app);
 
   async function handleSubmit(e) {
     e.preventDefault();
     const fd = new FormData(e.target);
     const formData = Object.fromEntries(fd.entries());
 
-    const productData = {
-      ...formData,
-      category: formData.category.toLowerCase(),
-      subcategory: formData.subcategory.toLowerCase(),
-    };
+    const storageRef = ref(storage, formData.name);
+    const uploadTask = uploadBytesResumable(storageRef, formData.image);
 
-    const response = await fetch("http://localhost:3000/createproduct", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(productData),
-    });
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {},
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+          const productData = {
+            ...formData,
+            category: formData.category.toLowerCase(),
+            subcategory: formData.subcategory.toLowerCase(),
+            image: downloadURL,
+          };
 
-    if (!response.ok) {
-      toast.error("Something went wrong");
-    }
+          const response = await fetch("http://localhost:3000/createproduct", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(productData),
+          });
 
-    const resData = await response.json();
-    console.log(resData);
-    setShow(true);
-    // e.target.reset();
+          if (!response.ok) {
+            toast.error("Something went wrong");
+          }
+
+          const resData = await response.json();
+          console.log(resData);
+          setShow(true);
+          e.target.reset();
+        });
+      }
+    );
   }
 
   function handleSelectProducts() {
@@ -84,10 +105,15 @@ export default function NewProduct({ setPage }) {
         </Form.Select>
 
         <Row className="mb-3">
-          {/* <Form.Group as={Col} md="4">
+          <Form.Group as={Col} md="4">
             <Form.Label>Image</Form.Label>
-            <Form.Control required type="file" name="image" />
-          </Form.Group> */}
+            <Form.Control
+              required
+              type="file"
+              name="image"
+              style={{ fontSize: "1rem", width: "8rem" }}
+            />
+          </Form.Group>
         </Row>
         <Button type="submit">Confirm</Button>
       </Form>

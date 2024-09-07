@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { toast } from "react-toastify";
+import { getStorage, ref, deleteObject } from "firebase/storage";
+import { app } from "../../firebase";
 
 export default function Product() {
   const [products, setProduct] = useState([]);
+  const storage = getStorage(app);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -15,22 +18,31 @@ export default function Product() {
         toast.error(error);
       }
     }
-
     fetchProducts();
   }, []);
 
-  async function removeProduct(id) {
-    await fetch(`http://localhost:3000/deleteproduct/${id}`, {
+  async function removeProduct(product) {
+    await fetch(`http://localhost:3000/deleteproduct/${product._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
     });
 
-    setProduct((allProducts) => allProducts.filter((prod) => prod._id !== id));
-  }
+    setProduct((allProducts) =>
+      allProducts.filter((prod) => prod._id !== product._id)
+    );
 
-  console.log(products);
+    const delImage = ref(storage, product.name);
+
+    deleteObject(delImage)
+      .then(() => {
+        console.log("All good");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
     <div>
@@ -60,7 +72,7 @@ export default function Product() {
                 <td>{avalible ? "Yes" : "No"}</td>
                 <td>
                   <button
-                    onClick={() => removeProduct(product._id)}
+                    onClick={() => removeProduct(product)}
                     className="removeBtn"
                   >
                     X

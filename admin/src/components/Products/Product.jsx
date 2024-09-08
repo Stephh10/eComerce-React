@@ -1,25 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Table from "react-bootstrap/Table";
-import { toast } from "react-toastify";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import { app } from "../../firebase";
+import { Trash } from "phosphor-react";
+import useFetchData from "../../hooks/useFetchData";
 
 export default function Product() {
-  const [products, setProduct] = useState([]);
   const storage = getStorage(app);
 
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const response = await fetch("http://localhost:3000/getproducts");
-        const resData = await response.json();
-        setProduct(resData);
-      } catch (error) {
-        toast.error(error);
-      }
-    }
-    fetchProducts();
-  }, []);
+  const { data, setData, loading, error } = useFetchData(
+    "http://localhost:3000/getproducts"
+  );
 
   async function removeProduct(product) {
     await fetch(`http://localhost:3000/deleteproduct/${product._id}`, {
@@ -29,7 +20,7 @@ export default function Product() {
       },
     });
 
-    setProduct((allProducts) =>
+    setData((allProducts) =>
       allProducts.filter((prod) => prod._id !== product._id)
     );
 
@@ -42,6 +33,10 @@ export default function Product() {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  if (loading) {
+    return <div className="loading">Loading...</div>;
   }
 
   return (
@@ -60,7 +55,7 @@ export default function Product() {
           </tr>
         </thead>
         <tbody>
-          {products.map((product, index) => {
+          {data.map((product, index) => {
             const avalible = product.avalible;
             return (
               <tr className="align-middle" key={product._id}>
@@ -70,12 +65,9 @@ export default function Product() {
                 <td>{product.old_price}$</td>
                 <td>{product.new_price}$</td>
                 <td>{avalible ? "Yes" : "No"}</td>
-                <td>
-                  <button
-                    onClick={() => removeProduct(product)}
-                    className="removeBtn"
-                  >
-                    X
+                <td className="rowActions">
+                  <button onClick={() => removeProduct(product)}>
+                    <Trash size={25} />
                   </button>
                 </td>
               </tr>

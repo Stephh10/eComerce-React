@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const userRoute = require("./routes/User");
 const productRoute = require("./routes/Product");
+const orderRoute = require("./routes/Order");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -18,6 +19,7 @@ mongoose
 
 app.use("/", userRoute);
 app.use("/", productRoute);
+app.use("/", orderRoute);
 
 app.get("/", (req, res) => {
   res.send("Working");

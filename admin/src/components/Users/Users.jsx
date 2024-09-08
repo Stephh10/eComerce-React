@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
+import { Trash } from "phosphor-react";
+import useFetchData from "../../hooks/useFetchData";
 
 export default function Users() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    async function handleFetch() {
-      const response = await fetch("http://localhost:3000/getusers");
-
-      const resData = await response.json();
-      setData(resData);
-    }
-
-    handleFetch();
-  }, []);
+  const { data, setData, loading, error } = useFetchData(
+    "http://localhost:3000/getusers"
+  );
 
   async function handleRemoveUser(id) {
     const options = {
@@ -30,11 +23,12 @@ export default function Users() {
     if (response.ok) {
       setData((prevData) => prevData.filter((user) => user._id !== id));
     }
-
-    const resData = await response.json();
   }
 
-  console.log(data);
+  if (loading) {
+    return <div className="loading">Loading...</div>;
+  }
+
   return (
     <div>
       <h2>Users</h2>
@@ -57,12 +51,9 @@ export default function Users() {
                 <td>{item.username}</td>
                 <td>{item.email}</td>
                 <td>{admin ? "Yes" : "No"}</td>
-                <td>
-                  <button
-                    onClick={() => handleRemoveUser(item._id)}
-                    className="removeBtn"
-                  >
-                    X
+                <td className="rowActions">
+                  <button onClick={() => handleRemoveUser(item._id)}>
+                    <Trash size={25} />
                   </button>
                 </td>
               </tr>

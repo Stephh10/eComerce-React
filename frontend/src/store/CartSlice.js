@@ -30,7 +30,6 @@ const CartSlice = createSlice({
         (item) => item.id === action.payload.id
       );
 
-      console.log(existingItem);
       if (state.cart[existingItem].quantity <= 1) {
         state.cart.splice(existingItem, 1);
       } else {
@@ -41,9 +40,12 @@ const CartSlice = createSlice({
         state.cart[existingItem] = updatedItem;
       }
     },
+    resetCart: (state) => {
+      state.cart = [];
+    },
   },
 });
 
-export const { addCartItem, removeCartItem } = CartSlice.actions;
+export const { addCartItem, removeCartItem, resetCart } = CartSlice.actions;
 
 export default CartSlice.reducer;

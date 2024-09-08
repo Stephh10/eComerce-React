@@ -2,14 +2,39 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Cart.css";
 import CartItem from "../../components/CartItem/CartItem";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { resetCart } from "../../store/CartSlice";
 
 export default function Cart() {
+  const { cart } = useSelector((state) => state.cart);
+  const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
   const cartDetails = useSelector((state) => state.cart);
   const cartItems = cartDetails.cart.length;
   const finalPrice = cartDetails.cart.reduce((acc, item) => {
     return acc + item.new_price * item.quantity;
   }, 0);
+
+  async function handleOrderSubmit() {
+    const orderDetails = {
+      userId: currentUser.userData._id,
+      products: [...cart],
+    };
+
+    const response = await fetch("http://localhost:3000/createorder", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderDetails),
+    });
+
+    const resData = await response.json();
+    dispatch(resetCart());
+    toast.success(resData.message);
+  }
 
   return (
     <div className="card">
@@ -22,7 +47,7 @@ export default function Cart() {
         <div className="cartItems">
           {cartItems ? (
             cartDetails.cart.map((item) => (
-              <CartItem key={item.id} item={item} />
+              <CartItem key={item._id} item={item} />
             ))
           ) : (
             <p className="emptyCart">Your cart is empty</p>
@@ -47,7 +72,7 @@ export default function Cart() {
 
             <h3>${finalPrice}</h3>
           </div>
-          <button>CHECKOUT NOW</button>
+          <button onClick={handleOrderSubmit}>CHECKOUT NOW</button>
         </div>
       </div>
     </div>

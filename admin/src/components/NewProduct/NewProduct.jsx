@@ -77,6 +77,19 @@ export default function NewProduct({ setPage }) {
           </Form.Group>
         </Row>
         <Row className="mb-3">
+          <Form.Group className="mb-3">
+            <Form.Label>Category</Form.Label>
+            <Form.Select
+              style={{ height: "45px", width: "160px" }}
+              aria-label="Default select example"
+              className=""
+              name="category"
+            >
+              <option value="mens">Men</option>
+              <option value="women">Women</option>
+              <option value="kids">Kid</option>
+            </Form.Select>
+          </Form.Group>
           <Form.Group as={Col} md="4">
             <Form.Label>Subcategory</Form.Label>
             <Form.Control required type="text" name="subcategory" />
@@ -92,17 +105,12 @@ export default function NewProduct({ setPage }) {
             <Form.Control required type="number" name="new_price" />
           </Form.Group>
         </Row>
-
-        <Form.Select
-          style={{ height: "45px" }}
-          aria-label="Default select example"
-          className="w-25 mt-3"
-          name="category"
-        >
-          <option value="mens">Men</option>
-          <option value="women">Women</option>
-          <option value="kids">Kid</option>
-        </Form.Select>
+        <Row className="mb-3">
+          <Form.Group as={Col} md="4">
+            <Form.Label>Description</Form.Label>
+            <Form.Control as="textarea" required name="description" />
+          </Form.Group>
+        </Row>
 
         <Row className="mb-3">
           <Form.Group as={Col} md="4">

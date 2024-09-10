@@ -14,6 +14,19 @@ export default function Orders() {
     return <div className="loading">Loading...</div>;
   }
 
+  async function removeOrder(id) {
+    setData((allProducts) =>
+      allProducts.filter((product) => product._id !== id)
+    );
+    await fetch("http://localhost:3000/removeorder", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    });
+  }
+
   console.log(data);
   return (
     <div>
@@ -32,11 +45,16 @@ export default function Orders() {
         </thead>
         <tbody>
           {data.map((order, index) => {
-            const { formattedDate } = formatDate(order.products[0].date);
+            const { formattedDate } = formatDate(order.date);
+            console.log(order);
             return (
-              <tr key={order._id}>
+              <tr
+                className="align-middle"
+                style={{ cursor: "pointer" }}
+                key={order._id}
+              >
                 <td>{index + 1}</td>
-                <td>Kevin</td>
+                <td>{order.username}</td>
                 <td>{formattedDate}</td>
                 <td>{order.address}</td>
                 <td>100$</td>
@@ -45,7 +63,7 @@ export default function Orders() {
                   <button>
                     <Gear size={25} />
                   </button>
-                  <button>
+                  <button onClick={() => removeOrder(order._id)}>
                     <Trash size={25} />
                   </button>
                 </td>

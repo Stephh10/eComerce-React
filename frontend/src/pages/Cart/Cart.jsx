@@ -5,10 +5,11 @@ import CartItem from "../../components/CartItem/CartItem";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { resetCart } from "../../store/CartSlice";
+import StripeCheckout from "react-stripe-checkout";
 
 export default function Cart() {
   const { cart } = useSelector((state) => state.cart);
-  const { currentUser } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
 
   const cartDetails = useSelector((state) => state.cart);
@@ -17,9 +18,11 @@ export default function Cart() {
     return acc + item.new_price * item.quantity;
   }, 0);
 
-  async function handleOrderSubmit() {
+  async function onToken(token) {
+    if (!token) return null;
+
     const orderDetails = {
-      userId: currentUser.userData._id,
+      token,
       products: [...cart],
     };
 
@@ -37,44 +40,54 @@ export default function Cart() {
   }
 
   return (
-    <div className="card">
-      <div className="cartActions">
-        <Link to={"/"}>CONTINUE SHOPPING</Link>
-        <h1>Your Bag</h1>
-        <Link>CHECKOUT NOW</Link>
-      </div>
-      <div className="cardWrapper">
-        <div className="cartItems">
-          {cartItems ? (
-            cartDetails.cart.map((item) => (
-              <CartItem key={item._id} item={item} />
-            ))
-          ) : (
-            <p className="emptyCart">Your cart is empty</p>
-          )}
+    <>
+      <div className="card">
+        <div className="cartActions">
+          <Link to={"/"}>CONTINUE SHOPPING</Link>
+          <h1>Your Bag</h1>
+          <Link>CHECKOUT NOW</Link>
         </div>
-        <div className="cartDetails">
-          <h3>ORDER SUMMARY</h3>
-          <div className="cartDetailsEl">
-            <p>Subtotal</p>
-            <p>${finalPrice}</p>
+        <div className="cardWrapper">
+          <div className="cartItems">
+            {cartItems ? (
+              cartDetails.cart.map((item) => (
+                <CartItem key={item._id} item={item} />
+              ))
+            ) : (
+              <p className="emptyCart">Your cart is empty</p>
+            )}
           </div>
-          <div className="cartDetailsEl">
-            <p>Estimated Shipping</p>
-            <p>${!cartItems ? 0 : 10}</p>
-          </div>
-          <div className="cartDetailsEl">
-            <p>Shipping Discount</p>
-            <p>-${!cartItems ? 0 : 10}</p>
-          </div>
-          <div className="cartDetailsEl">
-            <p>Total</p>
+          <div className="cartDetails">
+            <h3>ORDER SUMMARY</h3>
+            <div className="cartDetailsEl">
+              <p>Subtotal</p>
+              <p>${finalPrice}</p>
+            </div>
+            <div className="cartDetailsEl">
+              <p>Estimated Shipping</p>
+              <p>${!cartItems ? 0 : 10}</p>
+            </div>
+            <div className="cartDetailsEl">
+              <p>Shipping Discount</p>
+              <p>-${!cartItems ? 0 : 10}</p>
+            </div>
+            <div className="cartDetailsEl">
+              <p>Total</p>
 
-            <h3>${finalPrice}</h3>
+              <h3>${finalPrice}</h3>
+            </div>
+            {/* <button onClick={handleOrderSubmit}>CHECKOUT NOW</button> */}
+            <StripeCheckout
+              token={onToken}
+              stripeKey={import.meta.env.VITE_STRIPE_KEY}
+              shippingAddress
+              billingAddress
+            >
+              <button>CHECKOUT NOW</button>
+            </StripeCheckout>
           </div>
-          <button onClick={handleOrderSubmit}>CHECKOUT NOW</button>
         </div>
       </div>
-    </div>
+    </>
   );
 }

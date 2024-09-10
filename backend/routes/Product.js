@@ -51,6 +51,16 @@ router.put("/updateproduct/:id", async (req, res) => {
   }
 });
 
+router.get("/getsubcategory/:category", async (req, res) => {
+  try {
+    const { category } = req.params;
+    const products = await Product.find({ subcategory: category });
+    res.json(products);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 router.delete("/deleteproduct/:id", async (req, res) => {
   try {
     const { id } = req.params;

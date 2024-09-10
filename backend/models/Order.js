@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const orderSchema = new Schema({
-  userId: {
-    type: String,
+  username: {
+    type: Object,
     required: true,
   },
   address: {

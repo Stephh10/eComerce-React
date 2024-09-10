@@ -58,7 +58,11 @@ export default function Product() {
           {data.map((product, index) => {
             const avalible = product.avalible;
             return (
-              <tr className="align-middle" key={product._id}>
+              <tr
+                className="align-middle"
+                style={{ cursor: "pointer" }}
+                key={product._id}
+              >
                 <td>{index + 1}</td>
                 <td>{product.name}</td>
                 <td>{product.category}</td>

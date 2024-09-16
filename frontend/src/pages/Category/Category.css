@@ -17,6 +17,20 @@
   margin: 0px 10px;
 }
 
+.categoryControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 0.6rem;
+}
+
+.categoryControl select {
+  padding: 7px;
+  color: #6d6d6d;
+  cursor: pointer;
+  outline: none;
+}
+
 .categoryAction {
   text-align: center;
 }
@@ -50,5 +64,9 @@
 @media only screen and (min-width: 1000px) {
   .category {
     margin: 20px 100px;
+  }
+
+  .categoryControl {
+    margin-right: 1.5rem;
   }
 }

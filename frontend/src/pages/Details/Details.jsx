@@ -16,11 +16,8 @@ export default function Details() {
       const resData = await response.json();
       setUser(resData);
     }
-
     findProduct();
   }, []);
-
-  console.log(user);
 
   return (
     <div className="details">

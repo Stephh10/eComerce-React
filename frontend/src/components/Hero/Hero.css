@@ -19,6 +19,12 @@
   margin: 5px;
 }
 
+.heroLeft h4 {
+  margin: 5px 0;
+  font-size: 17px;
+  color: #787878;
+}
+
 .heroLeft button {
   width: 130px;
   padding: 10px 0;
@@ -44,4 +50,16 @@
 
 .heroRight img {
   height: 90%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .hero {
+    margin: 0 100px 5px 100px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .heroRight img {
+    height: 70%;
+  }
 }

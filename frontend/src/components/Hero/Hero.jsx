@@ -8,13 +8,13 @@ export default function Hero() {
     <div className="hero">
       <div className="heroLeft">
         <h1>Most popular site for clothing!</h1>
-        <h4>Special collection only for you</h4>
+        <h4>Special collection only for you.</h4>
         <button>
           See More <ArrowUpRight size={25} />
         </button>
       </div>
       <div className="heroRight">
-        <img src={img1} alt="" />
+        <img src={img1} alt="hero image" />
       </div>
     </div>
   );

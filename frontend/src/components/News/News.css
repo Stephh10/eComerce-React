@@ -1,6 +1,6 @@
 .news {
   height: 55vh;
-  margin-top: 40px;
+  margin: 40px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,7 +18,7 @@
 
 .newsActions {
   height: 50px;
-  width: 70%;
+  width: 80%;
   display: flex;
   margin: 15px;
   border: 1px solid grey;
@@ -41,4 +41,10 @@
   outline: none;
   color: white;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 1000px) {
+  .newsActions {
+    width: 50%;
+  }
 }

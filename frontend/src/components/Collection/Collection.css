@@ -14,3 +14,16 @@
     margin: 0 100px 70px 100px;
   }
 }
+
+@media only screen and (max-width: 900px) {
+  .collectionGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .collectionGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+}

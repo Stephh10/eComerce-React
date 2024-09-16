@@ -1,5 +1,5 @@
 .category {
-  margin: 20px 0;
+  margin: 10px 0 20px 0;
 }
 
 .categoryShow {
@@ -63,10 +63,16 @@
 
 @media only screen and (min-width: 1000px) {
   .category {
-    margin: 20px 100px;
+    margin: 20px 170px;
   }
 
   .categoryControl {
-    margin-right: 1.5rem;
+    margin-right: 0.6rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .categoryGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

@@ -13,7 +13,7 @@ export default function CartItem({ item }) {
       <div className="cartItemContent">
         <div className="cartItemDetails">
           <h3>Product:{item.name}</h3>
-          <h3>Id:{item.id}</h3>
+          <h3>Id:{item._id}</h3>
           <h3>Avalible:Yes</h3>
           <h3>Price: {item.new_price}$</h3>
         </div>

@@ -18,3 +18,10 @@
     margin: 0 100px 70px 100px;
   }
 }
+
+@media only screen and (max-width: 900px) {
+  .popularGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}

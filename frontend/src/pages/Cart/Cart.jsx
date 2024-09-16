@@ -73,10 +73,8 @@ export default function Cart() {
             </div>
             <div className="cartDetailsEl">
               <p>Total</p>
-
               <h3>${finalPrice}</h3>
             </div>
-            {/* <button onClick={handleOrderSubmit}>CHECKOUT NOW</button> */}
             <StripeCheckout
               token={onToken}
               stripeKey={import.meta.env.VITE_STRIPE_KEY}

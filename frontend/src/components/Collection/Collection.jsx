@@ -7,7 +7,6 @@ import useFetch from "../../hooks/useFetch";
 export default function Collection() {
   const { data, error } = useFetch("http://localhost:3000/getsubcategory/new");
 
-  console.log(data);
   return (
     <div className="collection">
       <h1>New Collection</h1>

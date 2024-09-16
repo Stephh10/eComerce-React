@@ -89,6 +89,9 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .cartItems {
+    margin-bottom: 0;
+  }
   .cardWrapper {
     flex-direction: column;
   }

@@ -9,6 +9,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .cartItemDetails {
@@ -60,5 +61,22 @@
 @media only screen and (max-width: 750px) {
   .cartItemDetails h3 {
     font-size: 17px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .cartItem {
+    height: 300px;
+  }
+
+  .cartItemDetails h3 {
+    font-size: 22px;
+    margin: 10px 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .cartItem {
+    height: 150px;
   }
 }

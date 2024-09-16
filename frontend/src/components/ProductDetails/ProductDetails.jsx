@@ -9,10 +9,12 @@ export default function ProductDetails({ item }) {
   function addToCart() {
     dispatch(addCartItem(item));
   }
+
+  const avalible = item.avalible;
   return (
     <div className="productDetails">
       <div className="productDetailsLeft">
-        <img src={"ss"} alt="itemDetailsImage" />
+        <img src={item.image} alt="itemDetailsImage" />
       </div>
       <div className="productDetailsRight">
         <h2>{item.name}</h2>
@@ -20,12 +22,10 @@ export default function ProductDetails({ item }) {
           <p>${item.old_price.toFixed(2)}</p>
           <p>${item.new_price.toFixed(2)}</p>
         </div>
-        <p className="productDetailsDes">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa autem
-          praesentium expedita in illum, modi quaerat ipsum pariatur temporibus
-          amet iste iure consequatur minima nulla, incidunt eum molestiae
-          dolores explicabo.
-        </p>
+        <b>
+          <p>In Stock: {avalible ? "Yes" : "No"}</p>
+        </b>
+        <p className="productDetailsDes">{item.description}</p>
         <button onClick={addToCart}>Add To Cart</button>
       </div>
     </div>

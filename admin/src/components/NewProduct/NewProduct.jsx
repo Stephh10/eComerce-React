@@ -92,7 +92,7 @@ export default function NewProduct({ setPage }) {
           </Form.Group>
           <Form.Group as={Col} md="4">
             <Form.Label>Subcategory</Form.Label>
-            <Form.Control required type="text" name="subcategory" />
+            <Form.Control type="text" name="subcategory" />
           </Form.Group>
         </Row>
         <Row className="mb-4">

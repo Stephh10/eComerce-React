@@ -12,7 +12,7 @@ const productSchema = new Schema({
   },
   subcategory: {
     type: String,
-    default: "new",
+    default: "none",
   },
   description: {
     type: String,

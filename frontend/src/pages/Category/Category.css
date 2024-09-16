@@ -22,13 +22,29 @@
 }
 
 .categoryAction button {
-  margin: 20px 0 10px 0;
+  margin: 30px 0 40px 0;
   padding: 10px 15px;
-  border: none;
+  border: 1px solid grey;
   border-radius: 10px;
   background-color: white;
   font-weight: bold;
   cursor: pointer;
+}
+
+.categoryAction button:hover {
+  background-color: grey;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.categoryAction button:disabled {
+  cursor: not-allowed;
+}
+
+.categoryAction button:disabled:hover {
+  background-color: #d6d6d6;
+  color: #a1a1a1;
+  cursor: not-allowed;
 }
 
 @media only screen and (min-width: 1000px) {

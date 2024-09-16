@@ -13,7 +13,7 @@ export default function Collection() {
       <h1>New Collection</h1>
       <div className="line"></div>
       <div className="collectionGrid">
-        {data.map((item) => (
+        {data.slice(0, 8).map((item) => (
           <Item key={item._id} item={item} />
         ))}
       </div>

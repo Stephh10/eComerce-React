@@ -4,6 +4,7 @@ import { getStorage, ref, deleteObject } from "firebase/storage";
 import { app } from "../../firebase";
 import { Trash } from "phosphor-react";
 import useFetchData from "../../hooks/useFetchData";
+import { toast } from "react-toastify";
 
 export default function Product() {
   const storage = getStorage(app);
@@ -27,11 +28,9 @@ export default function Product() {
     const delImage = ref(storage, product.name);
 
     deleteObject(delImage)
-      .then(() => {
-        console.log("All good");
-      })
+      .then(() => {})
       .catch((error) => {
-        console.log(error);
+        toast.error(error);
       });
   }
 

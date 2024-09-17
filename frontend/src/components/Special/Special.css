@@ -1,0 +1,51 @@
+.special {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 80px;
+}
+
+.specialLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px 10px;
+  border-right: 1px solid white;
+}
+
+.specialLeft button {
+  border: 2px solid white;
+  background-color: inherit;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  margin: 16px 0;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.specialLeft h2 {
+  margin-bottom: 7px;
+}
+
+.specialRight {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.specialRight img {
+  width: 70%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .special {
+    margin: 0 140px 70px 140px;
+    height: 500px;
+  }
+}

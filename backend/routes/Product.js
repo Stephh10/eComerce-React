@@ -26,6 +26,9 @@ router.post("/createproduct", async (req, res) => {
 router.get("/getproducts", async (req, res) => {
   try {
     const products = await Product.find({});
+    if (!products) {
+      return res.json({ error: "Products not found" });
+    }
     res.json(products);
   } catch (error) {
     res.status(500).json(error);
@@ -55,9 +58,12 @@ router.get("/getsubcategory/:category", async (req, res) => {
   try {
     const { category } = req.params;
     const products = await Product.find({ subcategory: category });
+    if (products.length == 0) {
+      return res.json({ message: "No products found for this subcategory" });
+    }
     res.json(products);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ message: error });
   }
 });
 

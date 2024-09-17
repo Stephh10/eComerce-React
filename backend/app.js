@@ -21,9 +21,7 @@ app.use("/", userRoute);
 app.use("/", productRoute);
 app.use("/", orderRoute);
 
-app.get("/", (req, res) => {
-  res.send("Working");
-});
+app.get("/", (req, res) => {});
 
 app.listen(3000, () => {
   console.log("Server started");

@@ -53,7 +53,6 @@ export default function NewProduct({ setPage }) {
           }
 
           const resData = await response.json();
-          console.log(resData);
           setShow(true);
           e.target.reset();
         });

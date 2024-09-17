@@ -1,0 +1,27 @@
+.error {
+  background-color: rgb(255, 0, 0, 0.6);
+  color: white;
+  border-radius: 10px;
+  width: 450px;
+  text-align: center;
+  padding: 20px;
+  margin: 50px auto 0 auto;
+}
+
+.error button {
+  margin: 10px 0 5px 0;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  color: black;
+  padding: 7px 12px;
+  cursor: pointer;
+}
+
+.errorResponse {
+  text-align: center;
+  padding: 20px 0;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: 20px 0;
+}

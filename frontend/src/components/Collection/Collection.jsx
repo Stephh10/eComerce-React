@@ -1,11 +1,15 @@
 import React from "react";
 import "./Collection.css";
-import new_collections from "../../assets/new_collections";
 import Item from "../Item/Item";
 import useFetch from "../../hooks/useFetch";
+import ErrorResponse from "../../pages/Error/ErrorResponse";
 
 export default function Collection() {
   const { data, error } = useFetch("http://localhost:3000/getsubcategory/new");
+
+  if (error) {
+    return <ErrorResponse errorMsg={"Failed to load items"} />;
+  }
 
   return (
     <div className="collection">

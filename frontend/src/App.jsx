@@ -7,6 +7,7 @@ import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import Cart from "./pages/Cart/Cart";
 import Details from "./pages/Details/Details";
 import Notification from "./helpers/Notification";
+import Error from "./pages/Error/Error";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
         <Route path="/kids" element={<Category category="kids" />} />
         <Route path="/auth" element={<LoginRegister />} />
         <Route path="/cart" element={<Cart />} />
+        <Route
+          path="*"
+          element={<Error errorMsg={"Page not found"} status={404} />}
+        />
       </Routes>
       <Notification />
       <Footer />

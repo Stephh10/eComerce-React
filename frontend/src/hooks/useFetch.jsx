@@ -6,18 +6,26 @@ export default function useFetch(url, options) {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(url, (options = null));
-      if (!response.ok) {
-        setError("Somting went wrong");
+      try {
+        const response = await fetch(url, options);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const resData = await response.json();
+        if (resData.message) {
+          throw new Error(resData.message);
+        }
+        setData(resData);
+      } catch (error) {
+        setError(error);
       }
-      const resData = await response.json();
-      setData(resData);
     }
     fetchData();
-  }, []);
+  }, [url, options]);
 
-  console.log(data);
   return {
     data,
+    error,
   };
 }

@@ -27,7 +27,6 @@ export default function Orders() {
     });
   }
 
-  console.log(data);
   return (
     <div>
       <h2>Orders</h2>
@@ -46,7 +45,6 @@ export default function Orders() {
         <tbody>
           {data.map((order, index) => {
             const { formattedDate } = formatDate(order.date);
-            console.log(order);
             return (
               <tr
                 className="align-middle"

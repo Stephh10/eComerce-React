@@ -12,7 +12,6 @@ router.post("/createorder", async (req, res) => {
       address: token.card.address_line1,
     });
     await order.save();
-    console.log(order);
     res.json({ message: "Order completed check your email for details" });
   } catch (error) {
     res.status(500).json(error);

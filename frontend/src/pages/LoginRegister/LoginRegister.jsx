@@ -13,8 +13,6 @@ export default function LoginRegister() {
   const dispatch = useDispatch();
   const currentUserData = useSelector((state) => state.user);
 
-  console.log(currentUserData);
-
   function handleLogin(e) {
     e.preventDefault();
     const fd = new FormData(e.target);

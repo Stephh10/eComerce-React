@@ -14,14 +14,13 @@ export default function Category({ category }) {
       try {
         const response = await fetch("http://localhost:3000/getproducts");
         const resData = await response.json();
-        console.log(resData);
         const filteredData = resData.filter(
           (product) => product.category === category
         );
         setAllProducts(filteredData);
         setProductNum(9);
       } catch (error) {
-        console.log(error);
+        return <ErrorResponse errorMsg={error} />;
       }
     }
     fetchProducts();

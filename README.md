@@ -1,0 +1,3 @@
+This project is a fully functional e-commerce store for clothing, featuring a user-friendly front end and a powerful back end. Built with Express.js and MongoDB. It also includes admin panel for product management, admins can create, read, update, and delete products, manage users, and view orders.
+
+The project implements Firebase Storage for efficient image storage and management. All user and admin-uploaded images are securely stored in Firebase.Additionally, the project integrates Stripe for payment processing, enabling users to complete purchases using their credit or debit cards. The Stripe API is used to manage transactions, ensuring user data privacy.
